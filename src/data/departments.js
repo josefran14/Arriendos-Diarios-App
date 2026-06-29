@@ -69,9 +69,9 @@ export const departments = [
     mapEmbed: MAP_EMBED,
     seo: {
       title:
-        "Arriendo Diario Departamento 5 Personas Santiago Centro | Zenteno 138",
+        "Departamento Amoblado para 5 Personas | Santiago Centro desde $30.000",
       description:
-        "Departamento amoblado en arriendo diario para hasta 5 personas en Zenteno 138, Santiago Centro. Cerca del Metro Universidad de Chile. Desde $30.000 por noche.",
+        "Arriendo diario de departamento amoblado para hasta 5 personas en Zenteno 138, Santiago Centro. 1 dormitorio, 2 camas y excelente ubicación cerca del Metro Universidad de Chile.",
       image: "/departamento-espacioso.jpeg",
       priceMin: 30000,
       priceMax: 55000,
@@ -105,9 +105,9 @@ export const departments = [
     mapEmbed: MAP_EMBED,
     seo: {
       title:
-        "Arriendo Diario 2-3 Personas Santiago Centro | Departamento Amoblado",
+        "Departamento 2 a 3 Personas | Santiago Centro desde $35.000",
       description:
-        "Departamento amoblado en arriendo diario para 2 a 3 personas en Zenteno 138, Santiago Centro. Cama matrimonial y plaza y media. Desde $35.000 por noche.",
+        "Arriendo diario de departamento amoblado para 2 a 3 personas en Zenteno 138, Santiago Centro. Incluye cama matrimonial y cama plaza y media, a pasos del Metro Universidad de Chile.",
       image: "/departamento-acogedor.jpeg",
       priceMin: 35000,
       priceMax: 40000,

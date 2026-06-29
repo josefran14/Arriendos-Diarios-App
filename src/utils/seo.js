@@ -15,9 +15,9 @@ export const BUSINESS = {
 
 export const HOME_SEO = {
   title:
-    "Arriendo Diario Santiago Centro | Departamentos Amoblados cerca Metro U. de Chile",
+    "Arriendo Diario en Santiago Centro | Departamentos Amoblados desde $35.000",
   description:
-    "Arriendo diario de departamentos amoblados en Zenteno 138, Santiago Centro. A 2 cuadras del Metro Universidad de Chile. Opciones para 2 a 5 personas. Reserva por WhatsApp.",
+    "Departamentos amoblados en Zenteno 138, Santiago Centro, a 2 cuadras del Metro Universidad de Chile. Opciones para 2 a 5 personas con reserva por WhatsApp.",
   path: "/",
   image: "/og-image.jpeg",
 };
