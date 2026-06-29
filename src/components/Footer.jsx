@@ -17,6 +17,7 @@ export const Footer = () => (
     }}
   >
     <Typography
+      component="h2"
       variant="h6"
       gutterBottom
       sx={{
@@ -25,6 +26,13 @@ export const Footer = () => (
       }}
     >
       Contacto
+    </Typography>
+
+    <Typography
+      variant="body2"
+      sx={{ color: "#e0e0e0", mb: 1 }}
+    >
+      Zenteno 138, Santiago Centro — a 2 cuadras del Metro Universidad de Chile
     </Typography>
 
     <Box
@@ -117,8 +125,8 @@ export const Footer = () => (
         textShadow: "0 0 3px rgba(255, 255, 255, 0.3)",
       }}
     >
-      © {new Date().getFullYear()} Departamento Amoblado Santiago Centro. Todos
-      los derechos reservados.
+      © {new Date().getFullYear()} Arriendos Diarios Glady's.C — Santiago
+      Centro. Todos los derechos reservados.
     </Typography>
   </Box>
 );

@@ -2,7 +2,6 @@ import { useState } from "react";
 import {
   Box,
   Typography,
-  Grid,
   Paper,
   Chip,
   Stack,
@@ -12,20 +11,6 @@ import {
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
-import entrada from "../assets/images/entrada.jpeg";
-import foto1 from "../assets/images/habitacion/habitacion1.jpeg";
-import foto2 from "../assets/images/habitacion/habitacion2.jpeg";
-import foto4 from "../assets/images/habitacion/habitacion3.jpeg";
-import foto5 from "../assets/images/living/living.jpeg";
-import foto6 from "../assets/images/living/living2.jpeg";
-import foto7 from "../assets/images/living/living3.jpeg";
-import foto8 from "../assets/images/living/living4.jpeg";
-import foto9 from "../assets/images/living/living5.jpeg";
-import foto10 from "../assets/images/living/living6.jpeg";
-import foto11 from "../assets/images/cocina/cocina1.jpeg";
-import foto12 from "../assets/images/cocina/cocina2.jpeg";
-import foto13 from "../assets/images/baño/baño.jpeg";
-import foto14 from "../assets/images/baño/tina.jpeg";
 import visa from "../assets/images/visa.png";
 import mastercard from "../assets/images/mastercard.jpg";
 import mercadoPago from "../assets/images/mercado-pago-logo-vector-2023.png";
@@ -33,94 +18,114 @@ import { Kitchen, Tv, Whatshot, Wifi } from "@mui/icons-material";
 import WorkIcon from "@mui/icons-material/Work";
 import BathtubIcon from "@mui/icons-material/Bathtub";
 import HotelIcon from "@mui/icons-material/Hotel";
+import PeopleIcon from "@mui/icons-material/People";
 import { useNavigate } from "react-router";
 
-const fotos = [
-  entrada,
-  foto1,
-  foto2,
-  foto4,
-  foto5,
-  foto6,
-  foto7,
-  foto8,
-  foto9,
-  foto10,
-  foto11,
-  foto12,
-  foto13,
-  foto14,
-];
+const featureIcons = {
+  furnished: WorkIcon,
+  bathroom: BathtubIcon,
+  bedroom: HotelIcon,
+  bed: HotelIcon,
+};
 
-export const DepartmentDetail = () => {
+export const DepartmentDetail = ({ department }) => {
   const [index, setIndex] = useState(-1);
   const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/");
-  };
+  const { images: fotos } = department;
 
   return (
-    <Box sx={{ p: { xs: 2, md: 4 }, maxWidth: 900, mx: "auto" }}>
-      {/* Título */}
+    <Box sx={{ p: { xs: 1.5, sm: 2, md: 4 }, maxWidth: 960, mx: "auto" }}>
       <Typography
+        variant="overline"
+        display="block"
+        textAlign="center"
+        sx={{ color: "#793CFB", fontWeight: 700, letterSpacing: 2 }}
+      >
+        {department.capacity}
+      </Typography>
+
+      <Typography
+        component="h1"
         variant="h4"
         gutterBottom
         textAlign="center"
-        fontWeight="bold"
         sx={{
           fontWeight: "bold",
           fontFamily: "Lora",
           color: "#263238",
+          fontSize: { xs: "1.8rem", md: "2.2rem" },
         }}
       >
-        Departamento Amoblado Santiago Centro
+        {department.title}
       </Typography>
-      {/* Precio */}
+
       <Typography
-        variant="h5"
-        gutterBottom
+        variant="subtitle1"
         textAlign="center"
+        sx={{ color: "text.secondary", mb: 1, fontSize: { xs: "0.95rem", md: "1rem" } }}
+      >
+        {department.subtitle}
+      </Typography>
+
+      <Box
         sx={{
-          fontWeight: 600,
-          fontFamily: "'Poppins', sans-serif",
-          color: "#512DA8",
-          mt: 2,
+          textAlign: "center",
+          mb: 3,
+          p: { xs: 1.5, md: 2 },
+          borderRadius: 3,
+          background: "linear-gradient(135deg, #f3e8ff 0%, #ede7f6 100%)",
         }}
       >
-        Precio: $30.000 - $55.000 por noche(Precio según número de huéspedes)
-      </Typography>
-      <Grid
-        container
-        spacing={0.5}
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: 700,
+            fontFamily: "'Poppins', sans-serif",
+            color: "#512DA8",
+            fontSize: { xs: "1.35rem", md: "1.5rem" },
+          }}
+        >
+          {department.priceLabel}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: "#6a4b9a", mt: 0.5, fontSize: { xs: "0.78rem", md: "0.875rem" } }}
+        >
+          {department.priceDetail}
+        </Typography>
+      </Box>
+
+      <Box
         sx={{
           mb: 3,
-          maxWidth: 900,
-          mx: "auto",
           borderRadius: 3,
           overflow: "hidden",
-          position: "relative",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
         }}
       >
-        {/* Imagen principal */}
-        <Grid item xs={12} md={6}>
+        <Box
+          sx={{
+            display: { xs: "block", md: "grid" },
+            gridTemplateColumns: { md: "1fr 1fr" },
+            gap: 0.5,
+          }}
+        >
           <Box
             sx={{
               width: "100%",
-              height: { xs: 250, md: 450 },
-              borderRadius: { xs: 2, md: 3 },
+              height: { xs: 280, sm: 330, md: 450 },
               overflow: "hidden",
               cursor: "pointer",
               "&:hover img": {
-                transform: "scale(1.02)",
-                transition: "transform 0.3s ease",
+                transform: "scale(1.03)",
+                transition: "transform 0.4s ease",
               },
             }}
             onClick={() => setIndex(0)}
           >
             <img
               src={fotos[0]}
-              alt="Foto principal"
+              alt={`${department.title} - foto principal`}
               style={{
                 width: "100%",
                 height: "100%",
@@ -129,19 +134,23 @@ export const DepartmentDetail = () => {
               }}
             />
           </Box>
-        </Grid>
+        </Box>
 
-        {/* Miniaturas en formato 2x2 */}
-        <Grid
-          item
-          xs={12}
-          md={6}
+        <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gridTemplateRows: "repeat(2, 1fr)",
-            gap: 0.5,
+            display: { xs: "flex", md: "grid" },
+            gridTemplateColumns: { md: "repeat(2, 1fr)" },
+            gridTemplateRows: { md: "repeat(2, 1fr)" },
+            gap: { xs: 1, md: 0.5 },
             height: { xs: "auto", md: 450 },
+            overflowX: { xs: "auto", md: "visible" },
+            p: { xs: 1, md: 0 },
+            backgroundColor: { xs: "#fff", md: "transparent" },
+            "&::-webkit-scrollbar": { height: 8 },
+            "&::-webkit-scrollbar-thumb": {
+              backgroundColor: "#d0d0d0",
+              borderRadius: 10,
+            },
           }}
         >
           {fotos.slice(1, 5).map((foto, i) => (
@@ -151,8 +160,10 @@ export const DepartmentDetail = () => {
                 position: "relative",
                 overflow: "hidden",
                 cursor: "pointer",
-                borderRadius: 2,
-                height: { xs: 120, md: "auto" },
+                height: { xs: 90, sm: 110, md: "auto" },
+                minWidth: { xs: 120, sm: 145, md: "unset" },
+                borderRadius: { xs: 1.5, md: 0 },
+                flex: { xs: "0 0 auto", md: "unset" },
                 "&:hover img": {
                   transform: "scale(1.05)",
                   transition: "transform 0.3s ease",
@@ -162,7 +173,7 @@ export const DepartmentDetail = () => {
             >
               <img
                 src={foto}
-                alt={`Miniatura ${i + 2}`}
+                alt={`${department.title} - miniatura ${i + 2}`}
                 style={{
                   width: "100%",
                   height: "100%",
@@ -171,21 +182,17 @@ export const DepartmentDetail = () => {
                 }}
               />
 
-              {/* Overlay en la última miniatura */}
               {i === 3 && fotos.length > 5 && (
                 <Box
                   sx={{
                     position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "100%",
-                    backgroundColor: "rgba(0,0,0,0.4)",
+                    inset: 0,
+                    backgroundColor: "rgba(0,0,0,0.45)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     color: "#fff",
-                    fontSize: "1.5rem",
+                    fontSize: { xs: "1.2rem", md: "1.5rem" },
                     fontWeight: "bold",
                   }}
                 >
@@ -194,16 +201,16 @@ export const DepartmentDetail = () => {
               )}
             </Box>
           ))}
-        </Grid>
-      </Grid>
-      {/* Características */}
+        </Box>
+      </Box>
+
       <Box
         sx={{
           mb: 4,
-          p: 3,
-          backgroundColor: "#f9f9f9",
-          borderRadius: 2,
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+          p: { xs: 2, md: 3 },
+          backgroundColor: "#fafafa",
+          borderRadius: 3,
+          border: "1px solid #eee",
         }}
       >
         <Typography
@@ -213,77 +220,63 @@ export const DepartmentDetail = () => {
         >
           Características del Departamento
         </Typography>
-        <Stack
-          direction="row"
-          spacing={2}
-          flexWrap="wrap"
-          justifyContent="flex-start"
-        >
+        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+          {department.features.map((feature) => {
+            const Icon = featureIcons[feature.icon] || WorkIcon;
+            return (
+              <Chip
+                key={feature.label}
+                icon={<Icon />}
+                label={feature.label}
+                variant="outlined"
+                sx={{
+                  mb: 1,
+                  height: { xs: 28, md: 32 },
+                  "& .MuiChip-label": { px: { xs: 1, md: 1.5 }, fontSize: { xs: 12, md: 13 } },
+                }}
+              />
+            );
+          })}
           <Chip
-            icon={<WorkIcon />}
-            label="Departamento amoblado"
-            color="default"
+            icon={<PeopleIcon />}
+            label={department.capacity}
+            color="primary"
             variant="outlined"
-          />
-          <Chip
-            icon={<BathtubIcon />}
-            label="1 Baño"
-            color="default"
-            variant="outlined"
-          />
-          <Chip
-            icon={<HotelIcon />}
-            label="1 Habitación"
-            color="default"
-            variant="outlined"
-          />
-          <Chip
-            icon={<HotelIcon />}
-            label="2 Camas"
-            color="default"
-            variant="outlined"
+            sx={{
+              mb: 1,
+              height: { xs: 28, md: 32 },
+              "& .MuiChip-label": { px: { xs: 1, md: 1.5 }, fontSize: { xs: 12, md: 13 } },
+            }}
           />
         </Stack>
       </Box>
-      {/* Descripción */}
+
       <Box
         sx={{
           mb: 4,
-          p: { xs: 3, md: 4 },
+          p: { xs: 2, md: 4 },
           backgroundColor: "#ffffff",
           boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
           borderRadius: 3,
-          fontFamily: '"Montserrat", sans-serif',
           textAlign: "justify",
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-          {/* <LocationOnIcon color="primary" sx={{ mr: 1 }} /> */}
-          <Typography variant="h6" color="primary" sx={{ fontWeight: "bold" }}>
-            Excelente Ubicación
-          </Typography>
-        </Box>
-
+        <Typography variant="h6" color="primary" sx={{ fontWeight: "bold", mb: 2 }}>
+          Excelente Ubicación
+        </Typography>
         <Typography
           variant="body1"
           sx={{
             color: "text.primary",
             fontFamily: "'Lato', sans-serif",
-            fontSize: "1.05rem",
-            lineHeight: 1.75,
+            fontSize: { xs: "0.95rem", md: "1.05rem" },
+            lineHeight: { xs: 1.65, md: 1.75 },
           }}
         >
-          Departamento amoblado ubicado en <strong>Zenteno 138</strong>, en el
-          corazón de Santiago Centro. Ideal para familias o grupo de amigos. A
-          solo <strong>2 cuadras del metro Universidad de Chile</strong>,
-          rodeado de supermercados, farmacias, cafeterías y una variada oferta
-          gastronómica. Muy cercano a universidades, centros culturales y con{" "}
-          <strong>excelente conectividad</strong>. Ideal para una estadía{" "}
-          <strong>cómoda</strong>, <strong>segura</strong> y{" "}
-          <strong>bien ubicada</strong>.
+          {department.description}
         </Typography>
       </Box>
-      {/* Mapa de Ubicación */}
+
       <Box
         sx={{
           mb: 4,
@@ -294,23 +287,23 @@ export const DepartmentDetail = () => {
       >
         <iframe
           title="Mapa de ubicación"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.5797659611734!2d-70.64902802348303!3d-33.45127589733443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a7c8264f59%3A0x73ae2d5d2ef251f1!2sZenteno%20138%2C%208340309%20Santiago%2C%20Regi%C3%B3n%20Metropolitana%2C%20Chile!5e0!3m2!1ses-419!2sar!4v1718655930200!5m2!1ses-419!2sar"
+          src={department.mapEmbed}
           width="100%"
           height="350"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        />
       </Box>
-      {/* Comodidades / Features */};
+
       <Box
         sx={{
           mb: 4,
-          p: 3,
-          backgroundColor: "#f9f9f9",
-          borderRadius: 2,
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.05)",
+          p: { xs: 2, md: 3 },
+          backgroundColor: "#fafafa",
+          borderRadius: 3,
+          border: "1px solid #eee",
         }}
       >
         <Typography
@@ -320,15 +313,17 @@ export const DepartmentDetail = () => {
         >
           Comodidades Incluidas
         </Typography>
-
-        <Stack direction="row" spacing={2} flexWrap="wrap">
+        <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
           <Tooltip title="Wi-Fi rápido y estable" arrow>
             <Chip
               icon={<Wifi />}
               label="Wi-Fi"
               variant="outlined"
               color="success"
-              sx={{ fontWeight: "medium" }}
+              sx={{
+                height: { xs: 28, md: 32 },
+                "& .MuiChip-label": { px: { xs: 1, md: 1.5 }, fontSize: { xs: 12, md: 13 } },
+              }}
             />
           </Tooltip>
           <Tooltip title="Cocina totalmente equipada" arrow>
@@ -337,7 +332,10 @@ export const DepartmentDetail = () => {
               label="Cocina equipada"
               variant="outlined"
               color="secondary"
-              sx={{ fontWeight: "medium" }}
+              sx={{
+                height: { xs: 28, md: 32 },
+                "& .MuiChip-label": { px: { xs: 1, md: 1.5 }, fontSize: { xs: 12, md: 13 } },
+              }}
             />
           </Tooltip>
           <Tooltip title="TV por cable con canales premium" arrow>
@@ -346,7 +344,10 @@ export const DepartmentDetail = () => {
               label="TV Cable"
               variant="outlined"
               color="info"
-              sx={{ fontWeight: "medium" }}
+              sx={{
+                height: { xs: 28, md: 32 },
+                "& .MuiChip-label": { px: { xs: 1, md: 1.5 }, fontSize: { xs: 12, md: 13 } },
+              }}
             />
           </Tooltip>
           <Tooltip title="Calefacción para tu confort" arrow>
@@ -355,23 +356,26 @@ export const DepartmentDetail = () => {
               label="Calefacción"
               variant="outlined"
               color="warning"
-              sx={{ fontWeight: "medium" }}
+              sx={{
+                height: { xs: 28, md: 32 },
+                "& .MuiChip-label": { px: { xs: 1, md: 1.5 }, fontSize: { xs: 12, md: 13 } },
+              }}
             />
           </Tooltip>
         </Stack>
       </Box>
-      {/* Medios de pago */}
+
       <Paper
-        elevation={4}
+        elevation={0}
         sx={{
-          p: 4,
+          p: { xs: 2.5, md: 4 },
           maxWidth: 650,
           mx: "auto",
           borderRadius: 3,
-          background: "linear-gradient(135deg, #f5f7fa 0%, #e2ebf0 100%)",
+          background: "linear-gradient(135deg, #f5f7fa 0%, #e8eaf6 100%)",
           textAlign: "center",
           mb: 6,
-          boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+          border: "1px solid #e0e0e0",
         }}
       >
         <Typography
@@ -381,7 +385,6 @@ export const DepartmentDetail = () => {
         >
           Medios de Pago Aceptados
         </Typography>
-
         <Box
           sx={{
             display: "flex",
@@ -392,43 +395,21 @@ export const DepartmentDetail = () => {
             my: 2,
           }}
         >
-          <img
-            src={visa}
-            alt="Visa"
-            height={45}
-            style={{ filter: "grayscale(20%)" }}
-          />
-          <img
-            src={mastercard}
-            alt="MasterCard"
-            height={45}
-            style={{ filter: "grayscale(20%)" }}
-          />
-          <img
-            src={mercadoPago}
-            alt="Mercado Pago"
-            height={45}
-            style={{ filter: "grayscale(20%)" }}
-          />
+          <img src={visa} alt="Visa" height={45} />
+          <img src={mastercard} alt="MasterCard" height={45} />
+          <img src={mercadoPago} alt="Mercado Pago" height={45} />
         </Box>
-
-        <Typography
-          variant="body1"
-          sx={{
-            fontWeight: 500,
-            color: "#333",
-            mt: 1,
-          }}
-        >
+        <Typography variant="body1" sx={{ fontWeight: 500, color: "#333" }}>
           Aceptamos <strong>tarjetas de crédito</strong>,{" "}
-          <strong>transferencia bancaria</strong>,
-          <strong> Mercado Pago(Link)</strong> y <strong>efectivo</strong>.
+          <strong>transferencia bancaria</strong>,{" "}
+          <strong>Mercado Pago (Link)</strong> y <strong>efectivo</strong>.
         </Typography>
       </Paper>
+
       <Box sx={{ textAlign: "center", mt: 4 }}>
         <Button
           variant="contained"
-          onClick={handleNavigate}
+          onClick={() => navigate("/")}
           sx={{
             px: 4,
             py: 1.5,
@@ -437,63 +418,18 @@ export const DepartmentDetail = () => {
             fontSize: "1rem",
             textTransform: "none",
             backgroundColor: "#793CFB",
-            "&:hover": {
-              backgroundColor: "#5a2fcc",
-            },
+            "&:hover": { backgroundColor: "#5a2fcc" },
           }}
         >
           Volver al Inicio
         </Button>
       </Box>
-      {/* Lightbox */}
+
       <Lightbox
         open={index >= 0}
         index={index}
         close={() => setIndex(-1)}
-        slides={fotos.map((slide, i) => ({
-          src: slide,
-        }))}
-        render={{
-          slide: ({ slide }) => (
-            <Box
-              sx={{
-                height: "100vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                backgroundColor: "#f0f0f0",
-                position: "relative",
-                p: 2,
-              }}
-            >
-              <img
-                src={slide.src}
-                alt={slide.title}
-                style={{
-                  maxHeight: "90vh",
-                  maxWidth: "90vw",
-                  objectFit: "contain",
-                  borderRadius: 8,
-                }}
-              />
-              <Typography
-                sx={{
-                  position: "absolute",
-                  bottom: 20,
-                  left: 20,
-                  color: "black",
-                  backgroundColor: "rgba(255,255,255,0.8)",
-                  padding: "5px 10px",
-                  borderRadius: 1,
-                  fontWeight: "bold",
-                }}
-                variant="h6"
-              >
-                {slide.title}
-              </Typography>
-            </Box>
-          ),
-        }}
+        slides={fotos.map((src) => ({ src }))}
       />
     </Box>
   );
