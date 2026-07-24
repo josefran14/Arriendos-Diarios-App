@@ -14,6 +14,10 @@ export const AppRouter = () => {
         path="/departamento-compacto"
         element={<DepartmentPage slug="departamento-compacto" />}
       />
+      <Route
+        path="/monoambiente-centro"
+        element={<DepartmentPage slug="monoambiente-centro" />}
+      />
     </Routes>
   );
 };

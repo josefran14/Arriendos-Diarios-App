@@ -20,6 +20,11 @@ import comedor1 from "../assets/images/cocina/comedor-1.jpeg";
 import comedor2 from "../assets/images/cocina/comedor-2.jpeg";
 import bano1 from "../assets/images/baño/baño-1.jpeg";
 import bano2 from "../assets/images/baño/baño-2.jpeg";
+import monoCama from "../assets/images/monoambiente/cama-3.png";
+import monoTv from "../assets/images/monoambiente/tv-3.png";
+import monoCocinaA from "../assets/images/monoambiente/cocina-3a.png";
+import monoCocinaB from "../assets/images/monoambiente/cocina-3b.png";
+import monoBano from "../assets/images/monoambiente/bano-3.png";
 
 const MAP_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.5797659611734!2d-70.64902802348303!3d-33.45127589733443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a7c8264f59%3A0x73ae2d5d2ef251f1!2sZenteno%20138%2C%208340309%20Santiago%2C%20Regi%C3%B3n%20Metropolitana%2C%20Chile!5e0!3m2!1ses-419!2sar!4v1718655930200!5m2!1ses-419!2sar";
@@ -113,6 +118,41 @@ export const departments = [
       priceMax: 40000,
       occupancyMin: 2,
       occupancyMax: 3,
+    },
+  },
+  {
+    id: "departamento-3",
+    slug: "monoambiente-centro",
+    title: "Monoambiente Funcional",
+    subtitle: "Perfecto para 1 o 2 personas",
+    priceLabel: "$35.000 por noche",
+    priceDetail: "Tarifa fija para 1 o 2 personas",
+    capacity: "1 a 2 personas",
+    coverImage: monoCama,
+    images: [monoCama, monoTv, monoCocinaA, monoCocinaB, monoBano],
+    features: [
+      { icon: "furnished", label: "Monoambiente amoblado" },
+      { icon: "bathroom", label: "1 Baño" },
+      { icon: "bedroom", label: "Cama matrimonial" },
+      { icon: "bed", label: "Ideal para 1 o 2 personas" },
+    ],
+    highlights: [
+      "Monoambiente cómodo y práctico",
+      "Cama matrimonial",
+      "Cocina equipada",
+      "Ideal para 1 o 2 personas",
+    ],
+    description: `${LOCATION_BASE} Monoambiente acogedor y bien distribuido, ideal para viajes de trabajo o escapadas en pareja. Incluye cama matrimonial, cocina equipada y baño privado.`,
+    mapEmbed: MAP_EMBED,
+    seo: {
+      title: "Monoambiente 1 a 2 Personas | Santiago Centro $35.000 por noche",
+      description:
+        "Arriendo diario de monoambiente amoblado para 1 o 2 personas en Zenteno 138, Santiago Centro. Cama matrimonial, cocina equipada y baño privado por $35.000 la noche.",
+      image: "/departamento-monoambiente.png",
+      priceMin: 35000,
+      priceMax: 35000,
+      occupancyMin: 1,
+      occupancyMax: 2,
     },
   },
 ];

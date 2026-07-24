@@ -35,7 +35,7 @@ export const DepartmentsSection = () => {
             color="text.secondary"
             sx={{ mt: 1, maxWidth: 560, mx: "auto" }}
           >
-            Dos departamentos amoblados en Santiago Centro, a pasos del Metro
+            Tres departamentos amoblados en Santiago Centro, a pasos del Metro
             Universidad de Chile. Comodidad, ubicación y precios según tu grupo.
           </Typography>
         </Box>

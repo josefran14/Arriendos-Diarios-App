@@ -4,7 +4,11 @@ import path from "node:path";
 const distDir = path.resolve("dist");
 const indexPath = path.join(distDir, "index.html");
 
-const staticRoutes = ["home-estudio", "departamento-compacto"];
+const staticRoutes = [
+  "home-estudio",
+  "departamento-compacto",
+  "monoambiente-centro",
+];
 
 const createRoutePages = async () => {
   const indexHtml = await readFile(indexPath, "utf8");
